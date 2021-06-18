@@ -50,26 +50,13 @@ export default {
   },
   methods: {
     /**
-     * Calculate seconds between two dates
-     * @returns {Number} seconds between two dates
-     */
-    diffInSeconds() {
-      return Math.abs(this.date - new Date()) / 1000;
-    },
-    /**
      * Calculate days, hours, minutes from seconds
      */
     calculateValues() {
       const diffSeconds = Math.abs(this.date - new Date()) / 1000;
-      this.days = `0${Math.floor(this.diffInSeconds() / 60 / 60 / 24)}`.slice(
-        -2
-      );
-      this.hours = `0${Math.floor(
-        (this.diffInSeconds() / 60 / 60) % 24
-      )}`.slice(-2);
-      this.minutes = `0${Math.floor((this.diffInSeconds() / 60) % 60)}`.slice(
-        -2
-      );
+      this.days = `0${Math.floor(diffSeconds / 60 / 60 / 24)}`.slice(-2);
+      this.hours = `0${Math.floor((diffSeconds / 60 / 60) % 24)}`.slice(-2);
+      this.minutes = `0${Math.floor((diffSeconds / 60) % 60)}`.slice(-2);
       this.seconds = `0${Math.floor(diffSeconds % 60)}`.slice(-2);
     },
   },
