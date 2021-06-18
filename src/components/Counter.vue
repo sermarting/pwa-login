@@ -28,34 +28,24 @@ export default {
       default: new Date(),
     },
   },
-  computed: {
-    /**
-     * Computed to calculate days from date
-     * @returns {String} Days
-     */
-    days() {
-      return `0${Math.floor(this.diffInSeconds() / 60 / 60 / 24)}`.slice(-2);
-    },
-    /**
-     * Computed to calculate hours from date
-     * @returns {String} Hours
-     */
-    hours() {
-      return `0${Math.floor((this.diffInSeconds() / 60 / 60) % 24)}`.slice(-2);
-    },
-    /**
-     * Computed to calculate minutes from date
-     * @returns {String} Minutes
-     */
-    minutes() {
-      return `0${Math.floor((this.diffInSeconds() / 60) % 60)}`.slice(-2);
-    },
-    /**
-     * Computed to calculate seconds from date
-     * @returns {String} Seconds
-     */
-    seconds() {
-      return `0${Math.floor(this.diffInSeconds() % 60)}`.slice(-2);
+  data() {
+    return {
+      days: "00",
+      hours: "00",
+      minutes: "00",
+      seconds: "00",
+    };
+  },
+  watch: {
+    date: {
+      immediate: true,
+      handler() {
+        this.calculateValues();
+        let intervalId = setInterval(() => {
+          this.calculateValues();
+        }, 1000);
+        this.$emit("intervalId", intervalId);
+      },
     },
   },
   methods: {
@@ -65,6 +55,22 @@ export default {
      */
     diffInSeconds() {
       return Math.abs(this.date - new Date()) / 1000;
+    },
+    /**
+     * Calculate days, hours, minutes from seconds
+     */
+    calculateValues() {
+      const diffSeconds = Math.abs(this.date - new Date()) / 1000;
+      this.days = `0${Math.floor(this.diffInSeconds() / 60 / 60 / 24)}`.slice(
+        -2
+      );
+      this.hours = `0${Math.floor(
+        (this.diffInSeconds() / 60 / 60) % 24
+      )}`.slice(-2);
+      this.minutes = `0${Math.floor((this.diffInSeconds() / 60) % 60)}`.slice(
+        -2
+      );
+      this.seconds = `0${Math.floor(diffSeconds % 60)}`.slice(-2);
     },
   },
 };
