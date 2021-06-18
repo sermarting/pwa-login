@@ -1,11 +1,17 @@
 <template>
   <div class="login__container">
-    <img src="../assets/login.png" />
-    <LoginInput class="login__container-input" type="text" v-model="name">
+    <img src="../assets/login.png" alt="Login image" />
+    <LoginInput
+      class="login__container-input"
+      type="text"
+      label="Name"
+      v-model="name"
+    >
     </LoginInput>
     <LoginInput
       class="login__container-input"
       type="password"
+      label="Password"
       v-model="password"
     >
     </LoginInput>

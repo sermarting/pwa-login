@@ -1,6 +1,6 @@
 <template>
   <div class="header__container">
-    <img src="@/assets/login.png" />
+    <img src="@/assets/login.png" alt="Login image"/>
     <span class="header__container-name"> Welcome, {{ name }} </span>
   </div>
 </template>

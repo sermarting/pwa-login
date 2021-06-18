@@ -2,7 +2,7 @@
   <div class="main__container">
     <div class="main__container-counter">
       <p>The last time you accessed was:</p>
-      <Counter :date="lastDate"></Counter>
+      <Counter :date="lastDate" @intervalId="setIntervalId"></Counter>
     </div>
     <div class="main__container-logout">
       <button @click="logout">Logout</button>
@@ -24,13 +24,26 @@ export default {
       default: new Date(),
     },
   },
+  data() {
+    return {
+      intervalId: "",
+    };
+  },
   methods: {
     /**
      * Emits logout event
      * @emits logout
      */
     logout() {
+      clearInterval(this.intervalId);
       this.$emit("logout");
+    },
+    /**
+     * Set interval id
+     * @param {String} intervalId
+     */
+    setIntervalId(intervalId) {
+      this.intervalId = intervalId;
     },
   },
 };

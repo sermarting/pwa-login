@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <input :type="type" :value="modelValue" @input="updateInput" />
+  <div class="login-input__container">
+    <label :for="label">{{ label }}</label>
+    <input :id="label" :type="type" :value="modelValue" @input="updateInput" />
   </div>
 </template>
 
@@ -8,6 +9,10 @@
 export default {
   name: "LoginInput",
   props: {
+    label: {
+      type: String,
+      default: "",
+    },
     modelValue: {
       type: [String, Number],
       default: "",
@@ -30,4 +35,9 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.login-input__container {
+  display: flex;
+  flex-direction: column;
+}
+</style>
