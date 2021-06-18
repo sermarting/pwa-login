@@ -27,11 +27,16 @@ yarn build
 ```
 
 ### Run your unit tests
+
+unit tests with Mocha + Chai
 ```
 yarn test:unit
 ```
 
 ### Run your end-to-end tests
+
+e2e tests with WebdriverIO
+
 ```
 yarn test:e2e
 ```
