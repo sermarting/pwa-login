@@ -26,6 +26,11 @@ localStorage.setItem('sergio:123', new Date());
 yarn build
 ```
 
+### Run production serve to test PWA Application (previously yarn build)
+```
+serve dist
+```
+
 ### Run your unit tests
 
 unit tests with Mocha + Chai
